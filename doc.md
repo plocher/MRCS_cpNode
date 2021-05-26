@@ -58,15 +58,18 @@ Author:  Chuck Catania, 2013-2016
   * Changed DEBOUNCE_DELAY from 10 ms to 2 ms
   * Added BASE_NODE_RSMC_LOCK configuration to support locking an RSMC controlled turnout with Dennis Drury's switch lock board.
   * Added BASE_NODE_8OUT8IN.  Sets D4-D11 as outputs, D12-A5 as inputs.
+
 ###   v1.4.1 04/15/2015  Changed CMRINET_SPEED definition from int to long for network speeds greater than 28800 bps
 
 ###   v1.4   06/25/2014  Added the 12 output, 4 input standard configuration per Dick Johannes of the NMRA HUB Division
   * Moved debug option and SN variables out of Node Configuration Parameters area.
+
 ###   v1.3   04/06/2014  Fixed issue with BASE_NODE_8IN8OUT, BASE_NODE_16OUT high bit B8 output not moved to A5.
-  * Bit extraction loop ended one bit early.  Other routines worked because loop limit was less than
-  * maximum port map index.
+  * Bit extraction loop ended one bit early.  Other routines worked because loop limit was less than maximum port map index.
+
 ###   v1.2   03/06/2014  Fixed issue with BASE_NODE_8IN8OUT where port setup did not match specification.
   * This was an implementation deviation from the design specification.
+
 ###   v1.1   03/01/2014  Fixed issue with BASE_NODE_8IN8OUT where the byte assignment was flipped.
 
 ###   v1.0   01/04/2014  Released
