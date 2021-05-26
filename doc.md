@@ -3,6 +3,26 @@ Author:  Chuck Catania, 2013-2016
 
 Release Notes:
 
+   v1.6   05/22/2021  Plocher:
+                      Significant code cleanup, refactoring and simplification
+                      Add debugging flags and associated print statements...
+                      Removed APortMap array and convoluted indexing in favor of unrolled digitalRead/Writes
+                      Uses less FLASH and RAM
+                      Added PROMINI_8OUT8IN for MRCS cpNode Control Point Pro Mini
+                      Renamed BASE_NODE* to BBLEO*
+                      Use runtime constants to take advantage of compiler optimizer to remove unused and unreachable code
+                      Add support for active low or active high as a default
+                      Add support for inverting inputs and outputs
+
+                      Code sizes:                      
+                      1.6 BBLeo
+                      Sketch uses 9114 bytes (31%) of program storage space. Maximum is 28672 bytes.
+                      Global variables use 1117 bytes (43%) of dynamic memory, leaving 1443 bytes for local variables. Maximum is 2560 bytes.
+                      
+                      1.6 ProMini (no debug serial port)
+                      Sketch uses 6100 bytes (19%) of program storage space. Maximum is 30720 bytes.
+                      Global variables use 975 bytes (47%) of dynamic memory, leaving 1073 bytes for local variables. Maximum is 2048 bytes.
+
    v1.5   09/12/2016  Changed digital pin name mnemonics to hard coded pin numbers to keep the pre-processor happy.
                       Code size:
                       1.5 BBLeo Only

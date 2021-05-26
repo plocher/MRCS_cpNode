@@ -1,7 +1,7 @@
 title: MRCS_cpNode
 project: MRCS_cpNode
-author: Chuck Catania
-date:  2016
+author: Chuck Catania, John Plocher
+date:  2021
 status: released
 release: yes
 tags: [arduino, MRCS]
