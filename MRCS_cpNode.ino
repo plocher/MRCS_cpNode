@@ -17,53 +17,63 @@
   
   Revision History:
    v1.6   05/25/2021  Plocher:
-                      Significant code cleanup, refactoring and simplification
-                      Add debugging flags and associated print statements...
-                      Removed APortMap array and convoluted indexing in favor of unrolled digitalRead/Writes
-                      Uses less FLASH and RAM
-                      Added PROMINI_8OUT8IN for MRCS cpNode Control Point Pro Mini
-                      Renamed BASE_NODE* to BBLEO*
-                      Use runtime constants to take advantage of compiler optimizer to remove unused and unreachable code
-                      Add support for active low or active high as a default
-                      Add support for inverting inputs and outputs
+          Significant code cleanup, refactoring and simplification
+          Add debugging flags and associated print statements...
+          Removed APortMap array and convoluted indexing in favor of unrolled digitalRead/Writes
+          Uses less FLASH and RAM
+          Added PROMINI_8OUT8IN for MRCS cpNode Control Point Pro Mini
+          Renamed BASE_NODE* to BBLEO*
+          Use runtime constants to take advantage of compiler optimizer to remove unused and unreachable code
+          Add support for active low or active high as a default
+          Add support for inverting inputs and outputs
 
-                      Code sizes:                      
-                      1.6 BBLeo
-                      Sketch uses 9088 bytes (31%) of program storage space. Maximum is 28672 bytes.
-                      Global variables use 1115 bytes (43%) of dynamic memory, leaving 1445 bytes for local variables. Maximum is 2560 bytes.
+          Code sizes:                      
+          1.6 BBLeo
+          Sketch uses 9088 bytes (31%) of program storage space. Maximum is 28672 bytes.
+          Global variables use 1115 bytes (43%) of dynamic memory, leaving 1445 bytes for local variables. Maximum is 2560 bytes.
+          
+          1.6 ProMini (no debug serial port)
+          Sketch uses 6132 bytes (19%) of program storage space. Maximum is 30720 bytes.
+          Global variables use 975 bytes (47%) of dynamic memory, leaving 1073 bytes for local variables. Maximum is 2048 bytes.
                       
-                      1.6 ProMini (no debug serial port)
-                      Sketch uses 6132 bytes (19%) of program storage space. Maximum is 30720 bytes.
-                      Global variables use 975 bytes (47%) of dynamic memory, leaving 1073 bytes for local variables. Maximum is 2048 bytes.
-                      
-   v1.5   09/12/2016  Changed digital pin name mnemonics to hard coded pin numbers to keep the pre-processor happy.
-                      Code size:
-                      1.5 BBLeo Only
-                      Sketch uses 9418 bytes (32%) of program storage space. Maximum is 28672 bytes.
-                      Global variables use 1169 bytes (45%) of dynamic memory, leaving 1391 bytes for local variables. Maximum is 2560 bytes.
-   v1.4.4 03/28/2016  Removed #define BASE_NODE_SERVO as there was no support for the servo library
-   v1.4.2 05/27/2015  (TVerberg) Corrected typo errors in Base_Node_12out_4in output unpacking, 
-                      (TVerberg) Corrected Base_Node_Servo input packing routines.
-                      Rearranged CMRInet protocol responses to put non-message functions at the front of the list.
-                      Added Init message DL/DH delay processing for Classic node compatability. 
-                      Added Init_CA_Ports_OFF boolean.  If set to true, all ports driving Common Anode LEDs will be forced OFF at bootup.   
-                      Changed CMRInet_BufSize to int and increased length to 260 to handle the max SUSIC + 4 pad buffer
-                      Changed Flush_CMRInet_To_ETX() to exit on either seeing ETX or empty serial buffer
-                      Changed DEBOUNCE_DELAY from 10 ms to 2 ms
-                      Added BASE_NODE_RSMC_LOCK configuration to support locking an RSMC controlled turnout with
-                       Dennis Drury's switch lock board.
-                      Added BASE_NODE_8OUT8IN.  Sets D4-D11 as outputs, D12-A5 as inputs.
-   v1.4.1 04/15/2015  Changed CMRINET_SPEED definition from int to long for network speeds greater than 28800 bps        
-   v1.4   06/25/2014  Added the 12 output, 4 input standard configuration per Dick Johannes of the NMRA HUB Division
-                      Moved debug option and SN variables out of Node Configuration Parameters area.
-   v1.3   04/06/2014  Fixed issue with BASE_NODE_8IN8OUT, BASE_NODE_16OUT high bit B8 output not moved to A5.
-                      Bit extraction loop ended one bit early.  Other routines worked because loop limit was less than
-                      maximum port map index.
-   v1.2   03/06/2014  Fixed issue with BASE_NODE_8IN8OUT where port setup did not match specification.
-                      This was an implementation deviation from the design specification.
-   v1.1   03/01/2014  Fixed issue with BASE_NODE_8IN8OUT where the byte assignment was flipped.
-   v1.0   01/04/2014  Released 
-    0.0d  08/24/2013  Initial template definition
+   v1.5   09/12/2016  Catania
+          Changed digital pin name mnemonics to hard coded pin numbers to keep the pre-processor happy.
+          Code size:
+          1.5 BBLeo Only
+          Sketch uses 9418 bytes (32%) of program storage space. Maximum is 28672 bytes.
+          Global variables use 1169 bytes (45%) of dynamic memory, leaving 1391 bytes for local variables. Maximum is 2560 bytes.
+   v1.4.4 03/28/2016   Catania
+          Removed #define BASE_NODE_SERVO as there was no support for the servo library
+   v1.4.2 05/27/2015   Catania
+          (TVerberg) Corrected typo errors in Base_Node_12out_4in output unpacking, 
+          (TVerberg) Corrected Base_Node_Servo input packing routines.
+          Rearranged CMRInet protocol responses to put non-message functions at the front of the list.
+          Added Init message DL/DH delay processing for Classic node compatability. 
+          Added Init_CA_Ports_OFF boolean.  If set to true, all ports driving Common Anode LEDs will be forced OFF at bootup.   
+          Changed CMRInet_BufSize to int and increased length to 260 to handle the max SUSIC + 4 pad buffer
+          Changed Flush_CMRInet_To_ETX() to exit on either seeing ETX or empty serial buffer
+          Changed DEBOUNCE_DELAY from 10 ms to 2 ms
+          Added BASE_NODE_RSMC_LOCK configuration to support locking an RSMC controlled turnout with
+           Dennis Drury's switch lock board.
+          Added BASE_NODE_8OUT8IN.  Sets D4-D11 as outputs, D12-A5 as inputs.
+   v1.4.1 04/15/2015   Catania
+          Changed CMRINET_SPEED definition from int to long for network speeds greater than 28800 bps        
+   v1.4   06/25/2014   Catania
+          Added the 12 output, 4 input standard configuration per Dick Johannes of the NMRA HUB Division
+          Moved debug option and SN variables out of Node Configuration Parameters area.
+   v1.3   04/06/2014   Catania
+          Fixed issue with BASE_NODE_8IN8OUT, BASE_NODE_16OUT high bit B8 output not moved to A5.
+          Bit extraction loop ended one bit early.  Other routines worked because loop limit was less than
+          maximum port map index.
+   v1.2   03/06/2014   Catania
+          Fixed issue with BASE_NODE_8IN8OUT where port setup did not match specification.
+          This was an implementation deviation from the design specification.
+   v1.1   03/01/2014   Catania
+          Fixed issue with BASE_NODE_8IN8OUT where the byte assignment was flipped.
+   v1.0   01/04/2014   Catania
+          Released 
+    0.0d  08/24/2013   Catania
+          Initial template definition
     
   This sketch is the code template for a CMRI serial protocol node implemented in an Arduino style system board.  
   The Modern Devices BBLeo, Bare Bones Leonardo (ATMega32u4) is the target Arduino style system board. 
@@ -340,9 +350,13 @@ void Configure_IOX_Ports() {
             
             if (IOX_ioMap[k] != -1) {
 #if defined(MONITOR_SERIAL) && DEBUG_IOX
-                  MONITOR_SERIAL.print("IOX["); MONITOR_SERIAL.print(k); MONITOR_SERIAL.print("]  ");
-                  MONITOR_SERIAL.print(" I2C Address: 0x");     MONITOR_SERIAL.print(IOX_devAddr[k], HEX); 
-                  MONITOR_SERIAL.print(" Port ");               MONITOR_SERIAL.print( (j == 0) ? "A " : "B ");
+                  MONITOR_SERIAL.print("IOX["); 
+                  MONITOR_SERIAL.print(k); 
+                  MONITOR_SERIAL.print("]  ");
+                  MONITOR_SERIAL.print(" I2C Address: 0x");     
+                  MONITOR_SERIAL.print(IOX_devAddr[k], HEX); 
+                  MONITOR_SERIAL.print(" Port ");               
+                  MONITOR_SERIAL.print( (j == 0) ? "A " : "B ");
                   MONITOR_SERIAL.println( (IOX_ioMap[k] == 0) ? "OUTPUT" :
                                 (IOX_ioMap[k] == 1) ? "INPUT"  :
                                 "INVALID"); 
@@ -1218,14 +1232,17 @@ int CMRI_Read() {
           //-----------------------------------       
           matchID = Read_CMRI_Byte();  // Node Address  
 #if defined(MONITOR_SERIAL) && DEBUG_PROTOCOL
-          MONITOR_SERIAL.print(" ua=");MONITOR_SERIAL.print(matchID-UA_Offset); MONITOR_SERIAL.print(" ");
+          MONITOR_SERIAL.print(" ua=");
+          MONITOR_SERIAL.print(matchID-UA_Offset); 
+          MONITOR_SERIAL.print(" ");
 #endif
           
           // If node ID does not match, exit and flush to ETX in outer loop
           //---------------------------------------------------------------
           if (matchID != UA)  {
 #if defined(MONITOR_SERIAL) && DEBUG_PROTOCOL
-              MONITOR_SERIAL.print("NOT MINE: "); MONITOR_SERIAL.println(matchID);
+              MONITOR_SERIAL.print("NOT MINE: "); 
+              MONITOR_SERIAL.println(matchID);
 #endif
               resp = respIgnore;
               reading=false;
@@ -1234,7 +1251,9 @@ int CMRI_Read() {
              //------------------------------------------
              c = Read_CMRI_Byte();        // Message Type
 #if defined(MONITOR_SERIAL) && DEBUG_PROTOCOL
-             MONITOR_SERIAL.print("MsgType=");MONITOR_SERIAL.print(char(c)); MONITOR_SERIAL.print(" IB=");
+             MONITOR_SERIAL.print("MsgType=");
+             MONITOR_SERIAL.print(char(c)); 
+             MONITOR_SERIAL.print(" IB=");
 #endif
   
              switch( c ) {
@@ -1283,7 +1302,9 @@ int CMRI_Read() {
         
         default:  // Stuff the data character into the receive buffer
 #if defined(MONITOR_SERIAL) && DEBUG_PROTOCOL
-                         MONITOR_SERIAL.print("{"); MONITOR_SERIAL.print(byte(c),HEX); MONITOR_SERIAL.print("}");
+                         MONITOR_SERIAL.print("{"); 
+                         MONITOR_SERIAL.print(byte(c),HEX); 
+                         MONITOR_SERIAL.print("}");
 #endif
                          CMRInet_Buf[inCnt++] = c;
                         break;       
@@ -1295,7 +1316,8 @@ int CMRI_Read() {
           reading = false;
           resp = respErr;
 #if defined(MONITOR_SERIAL) && DEBUG_PROTOCOL
-          MONITOR_SERIAL.print("\nBuffer Overrun inCnt = "); MONITOR_SERIAL.println(inCnt);
+          MONITOR_SERIAL.print("\nBuffer Overrun inCnt = "); 
+          MONITOR_SERIAL.println(inCnt);
 #endif
        }
     } while (reading);
@@ -1310,7 +1332,8 @@ int CMRI_Read() {
     //--------------------------------------------------------- 
 
 #if defined(MONITOR_SERIAL) && DEBUG_PROTOCOL
-        MONITOR_SERIAL.print("\n ->inCnt = "); MONITOR_SERIAL.println(inCnt);
+        MONITOR_SERIAL.print("\n ->inCnt = "); 
+        MONITOR_SERIAL.print(inCnt);
         MONITOR_SERIAL.println();
 #endif
 
@@ -1399,7 +1422,10 @@ void CMRI_Poll_Resp() {
     } 
   
 #if defined(MONITOR_SERIAL) && DEBUG_POLL
-        MONITOR_SERIAL.print("Poll Response "); MONITOR_SERIAL.print("nIDB= "); MONITOR_SERIAL.print(nIB,HEX); MONITOR_SERIAL.print(" "); 
+        MONITOR_SERIAL.print("Poll Response "); 
+        MONITOR_SERIAL.print("nIDB= "); 
+        MONITOR_SERIAL.print(nIB,HEX); 
+        MONITOR_SERIAL.print(" "); 
         for (byte j=0; j<i; j++) {
             MONITOR_SERIAL.print(CMRInet_Buf[j],HEX); 
             MONITOR_SERIAL.print(" "); 
@@ -1498,21 +1524,21 @@ void loop() {
     //  Check for any messages from the host
     //----------------------------------------------
     switch( CMRI_Read() ) {
-      case respNone:     break;                                           // No data recveived, ignore
+      case respNone:     break;                   // No data recveived, ignore
                        
       case respErr:      
                          // FALLTHROUGH
-      case respIgnore:   Flush_CMRInet_To_ETX();                          // Flush input buffer to ETX for various reasons
+      case respIgnore:   Flush_CMRInet_To_ETX(); // Flush input buffer to ETX for various reasons
                          break; 
       
-      case respInit:     Initialize_cpNode();                             // "I" Initialize Message  HOST -> NODE, set configuration parameters
+      case respInit:     Initialize_cpNode();    // "I" Initialize Message  HOST -> NODE, set configuration parameters
                          break;
 
-                                                                          // "P" Poll Message     HOST -> NODE request for input data
-      case respPoll:     CMRI_Poll_Resp();                                // "R" Receive Message  NODE -> HOST send input port data to host
+                                                 // "P" Poll Message     HOST -> NODE request for input data
+      case respPoll:     CMRI_Poll_Resp();       // "R" Receive Message  NODE -> HOST send input port data to host
                          break;
       
-      case respTransmit: Unpack_Node_Outputs();                           // "T" Transmit (Write) Message  HOST -> NODE, set output bits
+      case respTransmit: Unpack_Node_Outputs();  // "T" Transmit (Write) Message  HOST -> NODE, set output bits
                          Unpack_IOX_Outputs();   
                          break;
 
