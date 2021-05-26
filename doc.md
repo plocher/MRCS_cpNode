@@ -3,7 +3,7 @@
 # Release Notes:
 Author:  Chuck Catania, 2013-2016
 
-### v1.6   05/22/2021  Plocher:
+### v1.6   05/25/2021  Plocher:
   * Significant code cleanup, refactoring and simplification
   * Add debugging flags and associated print statements...
   * Removed APortMap array and convoluted indexing in favor of unrolled digitalRead/Writes
