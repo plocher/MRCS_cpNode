@@ -1,3 +1,21 @@
+This sketch is the code template for a CMRI serial protocol node implemented in an Arduino style system board.  
+The Modern Devices BBLeo, Bare Bones Leonardo (ATMega32u4) is the target Arduino style system board. 
+v1.6 adds support for an Arduino Pro-Mini, although without the monitor serial port.
+  
+Implements the CMRI Serial Protocol designed by Dr. Bruce Chubb and published publicly in various books, magazines, and articles.
+  * The physical link is RS485, 4-wire, half duplex, serial.  
+  * Each node has a one byte address in the range of 0-127.  
+  * The Host polls the CMRI nodes for data.   
+  * Port assignments represent the defined capability of a cpNode.
+  * The base node data configuration is two bytes in, two bytes out.
+  * All needed signal pins are connected via pin headers to the node board.  
+
+Author:  Chuck Catania, 2013-2016
+
+See
+  * Eagle Project [MRCS cpNode](https://www.spcoast.com/pages/MRCS-cpNode.html)
+  * Eagle Project [MRCS MRCS-cpNode-ProMini](https://www.spcoast.com/pages/MRCS-cpNode-ProMini.html)
+  * Eagle Project [MRCS MRCS-BBProMini](https://www.spcoast.com/pages/MRCS-BBProMini.html)
 
 
 # Release Notes:
