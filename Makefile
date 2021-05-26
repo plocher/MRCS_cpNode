@@ -378,11 +378,9 @@ minor:
 	-git push
 	-git push origin ${NEXTMINOR}
 
-publishsketch:
-	convert2jekyll -t ino -n "$(PROJECT)" 
-
 publish: gerbers
-	convert2jekyll -t eagle -n "$(PROJECT)"
+	@if [ -f $(PROJECT).ino ]; then convert2jekyll -t ino -n "$(PROJECT)"; fi
+	@if [ -f $(PROJECT).brd ]; then convert2jekyll -t eagle -n "$(PROJECT)"; fi
 	@if [ -f $(PROJECT).parts.csv ]; then (set -x; grep -v PTH $(PROJECT).parts.csv > $(PROJECT).SMD-parts.csv); fi
 	@if [ -f $(PROJECT)_array.parts.csv ]; then (set -x; grep -v PTH $(PROJECT)_array.parts.csv > $(PROJECT)_array.SMD-parts.csv); fi
 	@rm -f $(PROJECT).gpi $(PROJECT).dri
@@ -406,7 +404,9 @@ publishall:
 	 )
 
 gerbers:
-	eagle2cam --order --stamp "${CURRENTTAG}" -P ${PROJECT} --noarchive --leave 
+	@if [ -f $(PROJECT).brd ]; then \
+		eagle2cam --order --stamp "${CURRENTTAG}" -P ${PROJECT} --noarchive --leave ; \
+	fi
 
 clean:
 	@# Gerber files, files that scripts generate, temp files...
