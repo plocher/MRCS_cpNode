@@ -1,12 +1,4 @@
-# MRCS_cpNode 
-## License: Creative Commons Attribution-ShareAlike 3.0 Unported License
 
-MRCS cpNode CMRI Kernel sketch
-
-This sketch is the code template for a CMRI serial protocol node implemented in an Arduino style system board.  
-The Modern Devices BBLeo, Bare Bones Leonardo (ATMega32u4) is the target Arduino style system board. 
-v1.6 adds support for an Arduino Pro-Mini, although without the monitor serial port.
-  
 Implements the CMRI Serial Protocol designed by Dr. Bruce Chubb and published publicly in various books, magazines, and articles.
   * The physical link is RS485, 4-wire, half duplex, serial.  
   * Each node has a one byte address in the range of 0-127.  
@@ -15,16 +7,16 @@ Implements the CMRI Serial Protocol designed by Dr. Bruce Chubb and published pu
   * The base node data configuration is two bytes in, two bytes out.
   * All needed signal pins are connected via pin headers to the node board.  
 
-See
+## Authors:
+  * Chuck Catania, 2013-2016
+  * John Plocher, 2021
+
+## See Also
   * Eagle Project [MRCS cpNode](https://www.spcoast.com/pages/MRCS-cpNode.html)
   * Eagle Project [MRCS MRCS-cpNode-ProMini](https://www.spcoast.com/pages/MRCS-cpNode-ProMini.html)
   * Eagle Project [MRCS MRCS-BBProMini](https://www.spcoast.com/pages/MRCS-BBProMini.html)
 
 ## Release Notes:
-
-## Authors:
-  * Chuck Catania, 2013-2016
-  * John Plcoher, 2021
 
 ### v1.6   05/25/2021  Plocher:
   * Significant code cleanup, refactoring and simplification
@@ -32,15 +24,15 @@ See
   * Removed APortMap array and convoluted indexing in favor of unrolled digitalRead/Writes
   * Uses less FLASH and RAM
   * Added PROMINI_8OUT8IN for MRCS cpNode Control Point Pro Mini
-  * Renamed BASE_NODE* to BBLEO*
+  * Renamed BASE_NODE to BBLEO
   * Use runtime constants to take advantage of compiler optimizer to remove unused and unreachable code
   * Add support for active low or active high as a default
   * Add support for inverting inputs and outputs
-
   * Code sizes:                      
     * 1.6 BBLeo
       * Sketch uses 9114 bytes (31%) of program storage space. Maximum is 28672 bytes.
       * Global variables use 1117 bytes (43%) of dynamic memory, leaving 1443 bytes for local variables. Maximum is 2560 bytes.
+
     * 1.6 ProMini (no debug serial port)
       * Sketch uses 6100 bytes (19%) of program storage space. Maximum is 30720 bytes.
       * Global variables use 975 bytes (47%) of dynamic memory, leaving 1073 bytes for local variables. Maximum is 2048 bytes.
@@ -70,8 +62,7 @@ See
   * Moved debug option and SN variables out of Node Configuration Parameters area.
 
 ###   v1.3   04/06/2014  Fixed issue with BASE_NODE_8IN8OUT, BASE_NODE_16OUT high bit B8 output not moved to A5.
-  * Bit extraction loop ended one bit early.  Other routines worked because loop limit was less than
-  * maximum port map index.
+  * Bit extraction loop ended one bit early.  Other routines worked because loop limit was less than maximum port map index.
 
 ###   v1.2   03/06/2014  Fixed issue with BASE_NODE_8IN8OUT where port setup did not match specification.
   * This was an implementation deviation from the design specification.
